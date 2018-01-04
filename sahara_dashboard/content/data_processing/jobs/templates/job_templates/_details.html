@@ -12,10 +12,6 @@
       <dd>{{ job.type }}</dd>
       <dt>{% trans "Description" %}</dt>
       <dd>{{ job.description|default:_("None") }}</dd>
-      <dt>{% trans "Public" %}</dt>
-      <dd>{{ job.is_public|yesno }}</dd>
-      <dt>{% trans "Protected" %}</dt>
-      <dd>{{ job.is_protected|yesno }}</dd>
       <dt>{% trans "Mains" %}</dt>
       {% for main in job.mains %}
         <dd><a href="{% url 'horizon:project:data_processing.jobs:jb-details' main.id  %}">{{ main.name }}</a></dd>

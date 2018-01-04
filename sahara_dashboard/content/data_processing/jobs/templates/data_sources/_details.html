@@ -14,10 +14,6 @@
     <dd>{{ data_source.url }}</dd>
     <dt>{% trans "Description" %}</dt>
     <dd>{{ data_source.description|default:_("None") }}</dd>
-    <dt>{% trans "Public" %}</dt>
-    <dd>{{ data_source.is_public|yesno }}</dd>
-    <dt>{% trans "Protected" %}</dt>
-    <dd>{{ data_source.is_protected|yesno }}</dd>
     <dt>{% trans "Create time" %}</dt>
     <dd>{{ data_source.created_at|parse_isotime }}</dd>
   </dl>
