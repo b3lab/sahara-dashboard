@@ -178,6 +178,18 @@ class ConfigureCluster(tables.LinkAction):
     attrs = {"style": "display: none"}
 
 
+class MakePublic(acl_utils.MakePublic):
+    def change_rule_method(self, request, datum_id, **update_kwargs):
+        saharaclient.cluster_update_acl_rules(
+            request, datum_id, **update_kwargs)
+
+
+class MakePrivate(acl_utils.MakePrivate):
+    def change_rule_method(self, request, datum_id, **update_kwargs):
+        saharaclient.cluster_update_acl_rules(
+            request, datum_id, **update_kwargs)
+
+
 class MakeProtected(acl_utils.MakeProtected):
     def change_rule_method(self, request, datum_id, **update_kwargs):
         saharaclient.cluster_update_acl_rules(
@@ -256,7 +268,8 @@ class ClustersTable(sahara_table.SaharaPaginateTabbedTable):
                          ConfigureCluster,
                          DeleteCluster,
                          ClustersFilterAction)
-        table_actions_menu = (MakeProtected, MakeUnProtected)
+        table_actions_menu = (MakePublic, MakePrivate,
+                              MakeProtected, MakeUnProtected)
         if SAHARA_VERIFICATION_DISABLED:
             row_actions = (ScaleCluster,
                            UpdateClusterShares,

@@ -133,6 +133,16 @@ class UpdateRow(tables.Row):
                 messages.error(request, _("Unable to update row"))
 
 
+class MakePublic(acl_utils.MakePublic):
+    def change_rule_method(self, request, datum_id, **update_kwargs):
+        saharaclient.job_execution_update(request, datum_id, **update_kwargs)
+
+
+class MakePrivate(acl_utils.MakePrivate):
+    def change_rule_method(self, request, datum_id, **update_kwargs):
+        saharaclient.job_execution_update(request, datum_id, **update_kwargs)
+
+
 class MakeProtected(acl_utils.MakeProtected):
     def change_rule_method(self, request, datum_id, **update_kwargs):
         saharaclient.job_execution_update(request, datum_id, **update_kwargs)

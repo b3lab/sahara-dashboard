@@ -23,6 +23,14 @@ from horizon import tables
 
 
 MESSAGE_MAPPING_PRESENT = {
+    'public': functools.partial(
+        ungettext_lazy,
+        u"Make public",
+        u"Make public"),
+    'private': functools.partial(
+        ungettext_lazy,
+        u"Make private",
+        u"Make private"),
     'protected': functools.partial(
         ungettext_lazy,
         u"Make protected",
@@ -34,6 +42,14 @@ MESSAGE_MAPPING_PRESENT = {
 }
 
 MESSAGE_MAPPING_PAST = {
+    'public': functools.partial(
+        ungettext_lazy,
+        u"Made public",
+        u"Made public"),
+    'private': functools.partial(
+        ungettext_lazy,
+        u"Made private",
+        u"Made private"),
     'protected': functools.partial(
         ungettext_lazy,
         u"Made protected",
@@ -57,6 +73,8 @@ class RuleChangeAction(tables.BatchAction):
     def action(self, request, datum_id):
         try:
             update_kwargs = {}
+            if self.rule in ['public', 'private']:
+                update_kwargs['is_public'] = self.rule == "public"
             if self.rule in ["protected", "unprotected"]:
                 update_kwargs['is_protected'] = self.rule == "protected"
             self.change_rule_method(request, datum_id, **update_kwargs)
@@ -102,7 +120,14 @@ class MakeUnProtected(RuleChangeAction):
 
 
 def get_is_public_form(object_type):
-    return None
+    return forms.BooleanField(
+        label=_("Public"),
+        help_text=_("If selected, %s will be shared across the "
+                    "tenants") % object_type,
+        required=False,
+        widget=forms.CheckboxInput(),
+        initial=False,
+    )
 
 
 def get_is_protected_form(object_type):

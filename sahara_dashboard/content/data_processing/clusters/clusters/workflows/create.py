@@ -103,7 +103,8 @@ class GeneralConfigAction(workflows.Action):
                     request, {})
             )
 
-        self.fields['is_public'] = False
+        self.fields['is_public'] = acl_utils.get_is_public_form(
+            _("cluster"))
         self.fields['is_protected'] = acl_utils.get_is_protected_form(
             _("cluster"))
 

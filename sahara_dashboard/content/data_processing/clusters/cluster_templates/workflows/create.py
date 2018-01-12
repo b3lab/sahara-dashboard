@@ -95,7 +95,7 @@ class GeneralConfigAction(workflows.Action):
         initial=True,
     )
 
-    is_public = False
+    is_public = acl_utils.get_is_public_form(_("cluster template"))
     is_protected = acl_utils.get_is_protected_form(_("cluster template"))
 
     anti_affinity = aa.anti_affinity_field()

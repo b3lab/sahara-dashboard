@@ -161,7 +161,8 @@ class JobBinaryCreateForm(forms.SelfHandlingForm):
                             required=False,
                             widget=forms.Textarea()))
 
-        self.fields["is_public"] = False
+        self.fields["is_public"] = acl_utils.get_is_public_form(
+            _("job binary"))
         self.fields["is_protected"] = acl_utils.get_is_protected_form(
             _("job binary"))
 

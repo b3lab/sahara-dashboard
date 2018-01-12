@@ -60,6 +60,18 @@ class EditDataSource(tables.LinkAction):
     classes = ("ajax-modal",)
 
 
+class MakePublic(acl_utils.MakePublic):
+    def change_rule_method(self, request, datum_id, **update_kwargs):
+        saharaclient.data_source_update(
+            request, datum_id, update_kwargs)
+
+
+class MakePrivate(acl_utils.MakePrivate):
+    def change_rule_method(self, request, datum_id, **update_kwargs):
+        saharaclient.data_source_update(
+            request, datum_id, update_kwargs)
+
+
 class MakeProtected(acl_utils.MakeProtected):
     def change_rule_method(self, request, datum_id, **update_kwargs):
         saharaclient.data_source_update(

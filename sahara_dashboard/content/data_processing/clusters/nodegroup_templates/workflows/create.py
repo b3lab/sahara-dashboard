@@ -185,7 +185,8 @@ class GeneralConfigAction(workflows.Action):
                         "access other cluster instances."),
             required=False)
 
-        self.fields['is_public'] = False
+        self.fields['is_public'] = acl_utils.get_is_public_form(
+            _("node group template"))
         self.fields['is_protected'] = acl_utils.get_is_protected_form(
             _("node group template"))
 
