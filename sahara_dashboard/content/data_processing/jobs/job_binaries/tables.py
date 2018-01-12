@@ -83,16 +83,6 @@ class EditJobBinary(tables.LinkAction):
     classes = ("btn-edit", "ajax-modal",)
 
 
-class MakePublic(acl_utils.MakePublic):
-    def change_rule_method(self, request, datum_id, **update_kwargs):
-        saharaclient.job_binary_update(request, datum_id, update_kwargs)
-
-
-class MakePrivate(acl_utils.MakePrivate):
-    def change_rule_method(self, request, datum_id, **update_kwargs):
-        saharaclient.job_binary_update(request, datum_id, update_kwargs)
-
-
 class MakeProtected(acl_utils.MakeProtected):
     def change_rule_method(self, request, datum_id, **update_kwargs):
         saharaclient.job_binary_update(request, datum_id, update_kwargs)
@@ -119,10 +109,7 @@ class JobBinariesTable(sahara_table.SaharaPaginateTabbedTable):
         verbose_name = _("Job Binaries")
         table_actions = (CreateJobBinary,
                          DeleteJobBinary,)
-        table_actions_menu = (MakePublic,
-                              MakePrivate,
-                              MakeProtected,
+        table_actions_menu = (MakeProtected,
                               MakeUnProtected)
         row_actions = (DeleteJobBinary, DownloadJobBinary, EditJobBinary,
-                       MakePublic, MakePrivate, MakeProtected,
-                       MakeUnProtected)
+                       MakeProtected, MakeUnProtected)

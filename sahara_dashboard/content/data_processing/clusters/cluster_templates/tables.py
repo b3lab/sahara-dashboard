@@ -111,18 +111,6 @@ def render_node_groups(cluster_template):
     return node_groups
 
 
-class MakePublic(acl_utils.MakePublic):
-    def change_rule_method(self, request, datum_id, **update_kwargs):
-        saharaclient.cluster_template_update_acl_rules(
-            request, datum_id, **update_kwargs)
-
-
-class MakePrivate(acl_utils.MakePrivate):
-    def change_rule_method(self, request, datum_id, **update_kwargs):
-        saharaclient.cluster_template_update_acl_rules(
-            request, datum_id, **update_kwargs)
-
-
 class MakeProtected(acl_utils.MakeProtected):
     def change_rule_method(self, request, datum_id, **update_kwargs):
         saharaclient.cluster_template_update_acl_rules(
@@ -160,10 +148,9 @@ class ClusterTemplatesTable(sahara_table.SaharaPaginateTabbedTable):
                          ConfigureClusterTemplate,
                          DeleteTemplate,
                          ClusterTemplatesFilterAction,)
-        table_actions_menu = (MakePublic, MakePrivate,
-                              MakeProtected, MakeUnProtected)
+        table_actions_menu = (MakeProtected, MakeUnProtected)
         row_actions = (CreateCluster,
                        EditTemplate,
                        CopyTemplate,
-                       DeleteTemplate, MakePublic, MakePrivate,
+                       DeleteTemplate,
                        MakeProtected, MakeUnProtected)

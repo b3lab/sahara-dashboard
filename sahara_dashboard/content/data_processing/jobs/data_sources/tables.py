@@ -60,18 +60,6 @@ class EditDataSource(tables.LinkAction):
     classes = ("ajax-modal",)
 
 
-class MakePublic(acl_utils.MakePublic):
-    def change_rule_method(self, request, datum_id, **update_kwargs):
-        saharaclient.data_source_update(
-            request, datum_id, update_kwargs)
-
-
-class MakePrivate(acl_utils.MakePrivate):
-    def change_rule_method(self, request, datum_id, **update_kwargs):
-        saharaclient.data_source_update(
-            request, datum_id, update_kwargs)
-
-
 class MakeProtected(acl_utils.MakeProtected):
     def change_rule_method(self, request, datum_id, **update_kwargs):
         saharaclient.data_source_update(
@@ -100,13 +88,9 @@ class DataSourcesTable(sahara_table.SaharaPaginateTabbedTable):
         verbose_name = _("Data Sources")
         table_actions = (CreateDataSource,
                          DeleteDataSource)
-        table_actions_menu = (MakePublic,
-                              MakePrivate,
-                              MakeProtected,
+        table_actions_menu = (MakeProtected,
                               MakeUnProtected)
         row_actions = (DeleteDataSource,
                        EditDataSource,
-                       MakePublic,
-                       MakePrivate,
                        MakeProtected,
                        MakeUnProtected)

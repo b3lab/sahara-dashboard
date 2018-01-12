@@ -101,16 +101,6 @@ class ChoosePlugin(tables.LinkAction):
         return "?".join([base_url, params])
 
 
-class MakePublic(acl_utils.MakePublic):
-    def change_rule_method(self, request, datum_id, **update_kwargs):
-        saharaclient.job_update(request, datum_id, **update_kwargs)
-
-
-class MakePrivate(acl_utils.MakePrivate):
-    def change_rule_method(self, request, datum_id, **update_kwargs):
-        saharaclient.job_update(request, datum_id, **update_kwargs)
-
-
 class MakeProtected(acl_utils.MakeProtected):
     def change_rule_method(self, request, datum_id, **update_kwargs):
         saharaclient.job_update(request, datum_id, **update_kwargs)
@@ -136,8 +126,6 @@ class JobTemplatesTable(sahara_table.SaharaPaginateTabbedTable):
         name = "job_templates"
         verbose_name = _("Job Templates")
         table_actions = (CreateJob, DeleteJob, JobsFilterAction,)
-        table_actions_menu = [MakePublic, MakePrivate, MakeProtected,
-                              MakeUnProtected]
+        table_actions_menu = [MakeProtected, MakeUnProtected]
         row_actions = (LaunchJobExistingCluster, ChoosePlugin, DeleteJob,
-                       MakePublic, MakePrivate, MakeProtected,
-                       MakeUnProtected)
+                       MakeProtected, MakeUnProtected)

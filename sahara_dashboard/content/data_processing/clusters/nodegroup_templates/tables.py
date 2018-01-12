@@ -86,18 +86,6 @@ class DeleteTemplate(tables.DeleteAction):
         saharaclient.nodegroup_template_delete(request, template_id)
 
 
-class MakePublic(acl_utils.MakePublic):
-    def change_rule_method(self, request, datum_id, **update_kwargs):
-        saharaclient.nodegroup_update_acl_rules(
-            request, datum_id, **update_kwargs)
-
-
-class MakePrivate(acl_utils.MakePrivate):
-    def change_rule_method(self, request, datum_id, **update_kwargs):
-        saharaclient.nodegroup_update_acl_rules(
-            request, datum_id, **update_kwargs)
-
-
 class MakeProtected(acl_utils.MakeProtected):
     def change_rule_method(self, request, datum_id, **update_kwargs):
         saharaclient.nodegroup_update_acl_rules(
@@ -134,9 +122,9 @@ class NodegroupTemplatesTable(sahara_table.SaharaPaginateTabbedTable):
                          ConfigureNodegroupTemplate,
                          DeleteTemplate,
                          NodeGroupTemplatesFilterAction,)
-        table_actions_menu = (MakePublic, MakePrivate, MakeProtected,
+        table_actions_menu = (MakeProtected,
                               MakeUnProtected)
         row_actions = (EditTemplate,
                        CopyTemplate,
-                       DeleteTemplate, MakePublic, MakePrivate, MakeProtected,
+                       DeleteTemplate, MakeProtected,
                        MakeUnProtected)

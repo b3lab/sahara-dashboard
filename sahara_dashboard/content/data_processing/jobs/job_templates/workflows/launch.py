@@ -48,7 +48,7 @@ class JobExecutionGeneralConfigAction(workflows.Action):
         add_item_link=DATA_SOURCE_CREATE_URL,
         required=False)
 
-    is_public = acl_utils.get_is_public_form(_("job"))
+    is_public = False
     is_protected = acl_utils.get_is_protected_form(_("job"))
 
     def __init__(self, request, *args, **kwargs):
@@ -109,7 +109,7 @@ class JobExecutionExistingGeneralConfigAction(JobExecutionGeneralConfigAction):
         initial=(None, "None"),
         widget=forms.Select(attrs={"class": "cluster_choice"}))
 
-    is_public = acl_utils.get_is_public_form(_("job"))
+    is_public = False
     is_protected = acl_utils.get_is_protected_form(_("job"))
 
     def populate_cluster_choices(self, request, context):

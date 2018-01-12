@@ -79,7 +79,7 @@ class GeneralConfigAction(workflows.Action):
         required=False,
         widget=forms.Textarea(attrs={'rows': 4}))
 
-    is_public = acl_utils.get_is_public_form(_("data source"))
+    is_public = False
     is_protected = acl_utils.get_is_protected_form(_("data source"))
 
     def __init__(self, request, *args, **kwargs):
