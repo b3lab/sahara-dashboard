@@ -185,8 +185,8 @@ class GeneralConfigAction(workflows.Action):
                         "access other cluster instances."),
             required=False)
 
-        self.fields['is_public'] = acl_utils.get_is_public_form(
-            _("node group template"))
+        # self.fields['is_public'] = acl_utils.get_is_public_form(
+        #     _("node group template"))
         self.fields['is_protected'] = acl_utils.get_is_protected_form(
             _("node group template"))
 
@@ -568,7 +568,7 @@ class ConfigureNodegroupTemplate(workflow_helpers.ServiceParametersWorkflow,
                 availability_zone=context["general_availability_zone"],
                 use_autoconfig=context['general_use_autoconfig'],
                 shares=ngt_shares,
-                is_public=context['general_is_public'],
+                is_public=False,
                 is_protected=context['general_is_protected'],
                 image_id=image_id)
 

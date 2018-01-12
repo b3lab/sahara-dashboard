@@ -79,7 +79,7 @@ class GeneralConfigAction(workflows.Action):
         required=False,
         widget=forms.Textarea(attrs={'rows': 4}))
 
-    is_public = acl_utils.get_is_public_form(_("data source"))
+    # is_public = acl_utils.get_is_public_form(_("data source"))
     is_protected = acl_utils.get_is_protected_form(_("data source"))
 
     def __init__(self, request, *args, **kwargs):
@@ -151,7 +151,7 @@ class CreateDataSource(workflows.Workflow):
                 context["source_url"],
                 context.get("general_data_source_credential_user", None),
                 context.get("general_data_source_credential_pass", None),
-                is_public=context['general_is_public'],
+                is_public=False,
                 is_protected=context['general_is_protected']
             )
 

@@ -161,8 +161,8 @@ class JobBinaryCreateForm(forms.SelfHandlingForm):
                             required=False,
                             widget=forms.Textarea()))
 
-        self.fields["is_public"] = acl_utils.get_is_public_form(
-            _("job binary"))
+        # self.fields["is_public"] = acl_utils.get_is_public_form(
+        #     _("job binary"))
         self.fields["is_protected"] = acl_utils.get_is_protected_form(
             _("job binary"))
 
@@ -250,7 +250,7 @@ class JobBinaryCreateForm(forms.SelfHandlingForm):
                 bin_url,
                 context["job_binary_description"],
                 extra,
-                is_public=context['is_public'],
+                is_public=False,
                 is_protected=context['is_protected']
             )
             messages.success(request, "Successfully created job binary")
@@ -370,7 +370,7 @@ class JobBinaryEditForm(JobBinaryCreateForm):
                 "description": context["job_binary_description"],
                 "extra": extra,
                 "url": bin_url,
-                'is_public': context['is_public'],
+                'is_public': False,
                 'is_protected': context['is_protected']
             }
 

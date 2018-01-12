@@ -103,8 +103,8 @@ class GeneralConfigAction(workflows.Action):
                     request, {})
             )
 
-        self.fields['is_public'] = acl_utils.get_is_public_form(
-            _("cluster"))
+        # self.fields['is_public'] = acl_utils.get_is_public_form(
+        #     _("cluster"))
         self.fields['is_protected'] = acl_utils.get_is_protected_form(
             _("cluster"))
 
@@ -229,7 +229,7 @@ class ConfigureCluster(whelpers.StatusFormatMixin, workflows.Workflow):
                 user_keypair_id=user_keypair,
                 count=context['general_cluster_count'],
                 net_id=context.get("general_neutron_management_network", None),
-                is_public=context['general_is_public'],
+                is_public=False,
                 is_protected=context['general_is_protected']
             )
             return True

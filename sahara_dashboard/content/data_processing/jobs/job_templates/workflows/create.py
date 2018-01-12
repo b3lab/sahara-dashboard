@@ -101,7 +101,7 @@ class GeneralConfigAction(workflows.Action):
     job_description = forms.CharField(label=_("Description"),
                                       required=False,
                                       widget=forms.Textarea(attrs={'rows': 4}))
-    is_public = acl_utils.get_is_public_form(_("job"))
+    # is_public = acl_utils.get_is_public_form(_("job"))
     is_protected = acl_utils.get_is_protected_form(_("job"))
 
     def __init__(self, request, context, *args, **kwargs):
@@ -266,7 +266,7 @@ class CreateJob(workflows.Workflow):
                 lib_locations,
                 context["job_description"],
                 interface=interface,
-                is_public=context['is_public'],
+                is_public=False,
                 is_protected=context['is_protected']
             )
 

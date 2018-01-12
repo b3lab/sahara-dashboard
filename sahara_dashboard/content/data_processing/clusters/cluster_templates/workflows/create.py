@@ -95,7 +95,7 @@ class GeneralConfigAction(workflows.Action):
         initial=True,
     )
 
-    is_public = acl_utils.get_is_public_form(_("cluster template"))
+    # is_public = acl_utils.get_is_public_form(_("cluster template"))
     is_protected = acl_utils.get_is_protected_form(_("cluster template"))
 
     anti_affinity = aa.anti_affinity_field()
@@ -412,7 +412,7 @@ class ConfigureClusterTemplate(whelpers.ServiceParametersWorkflow,
                 context["anti_affinity_info"],
                 use_autoconfig=context['general_use_autoconfig'],
                 shares=ct_shares,
-                is_public=context['general_is_public'],
+                is_public=False,
                 is_protected=context['general_is_protected'],
                 domain_name=domain
             )
