@@ -101,7 +101,7 @@ class EditNodegroupTemplate(copy_flow.CopyNodegroupTemplate):
                 use_autoconfig=context['general_use_autoconfig'],
                 is_proxy_gateway=context["general_proxygateway"],
                 shares=ngt_shares,
-                is_public=context['general_is_public'],
+                is_public=False,
                 is_protected=context['general_is_protected'],
                 image_id=image_id)
             return True

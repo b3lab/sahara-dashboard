@@ -83,7 +83,7 @@ class EditDataSource(create.CreateDataSource):
                     "password": context.get(
                         "general_data_source_credential_pass", None)
                 },
-                "is_public": context['general_is_public'],
+                "is_public": False,
                 "is_protected": context['general_is_protected']
             }
             return saharaclient.data_source_update(request,

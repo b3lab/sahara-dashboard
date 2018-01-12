@@ -101,7 +101,7 @@ class EditClusterTemplate(copy_flow.CopyClusterTemplate):
                 anti_affinity=context["anti_affinity_info"],
                 use_autoconfig=context['general_use_autoconfig'],
                 shares=ct_shares,
-                is_public=context['general_is_public'],
+                is_public=False,
                 is_protected=context['general_is_protected'],
                 domain_name=domain
             )

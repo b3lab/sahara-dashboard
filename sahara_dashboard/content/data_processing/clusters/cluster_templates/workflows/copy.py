@@ -97,8 +97,8 @@ class CopyClusterTemplate(create_flow.ConfigureClusterTemplate):
                     fields["shares"].initial = (
                         self._get_share_defaults(fields["shares"].choices)
                     )
-                    fields['is_public'].initial = (
-                        self.template.is_public)
+                    # fields['is_public'].initial = (
+                    #     self.template.is_public)
                     fields['is_protected'].initial = (
                         self.template.is_protected)
 
