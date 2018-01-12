@@ -10,6 +10,8 @@
         <dd>{{ template.id }}</dd>
         <dt>{% trans "Description" %}</dt>
         <dd>{{ template.description|default:_("None") }}</dd>
+        <dt>{% trans "Protected" %}</dt>
+        <dd>{{ template.is_protected|yesno }}</dd>
         <dt>{% trans "Base Image" %}</dt>
         {% if template.image_id and base_image_name %}
             <dd><a href="{% url 'horizon:project:images:images:detail' template.image_id %}">{{ base_image_name }}</a></dd>

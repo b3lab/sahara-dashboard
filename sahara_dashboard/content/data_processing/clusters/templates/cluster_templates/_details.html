@@ -18,6 +18,8 @@
     <dd>{{ template.hadoop_version }}</dd>
     <dt>{% trans "Use auto-configuration" %}</dt>
     <dd>{{ template.use_autoconfig }}</dd>
+    <dt>{% trans "Protected" %}</dt>
+    <dd>{{ template.is_protected|yesno }}</dd>
     {% if template.domain_name %}
       <dt>{% trans "Domain name" %}</dt>
       <dd>{{ template.domain_name }}</dd>
